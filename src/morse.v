@@ -830,7 +830,7 @@ endmodule
 * Implements the functionality described in the project documentation: 
 *   https://github.com/b-etz/tt08-morse-keyer
 */
-module tt08_morse_keyer(
+module tt_um_betz_morse_keyer(
   input clk_i, rstn_i,
   input [3:0] wpm_sel_i,
   input paddle_sel_i, iambic_AB_i,
