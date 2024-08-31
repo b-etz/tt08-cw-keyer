@@ -830,8 +830,8 @@ endmodule
 * Implements the functionality described in the project documentation: 
 *   https://github.com/b-etz/tt08-morse-keyer
 */
-module tt_um_betz_morse_keyer(
-  input clk, rstn_i,
+module tt08_morse_keyer(
+  input clk_i, rstn_i,
   input [3:0] wpm_sel_i,
   input paddle_sel_i, iambic_AB_i,
   input dit_i, dah_i,
@@ -843,16 +843,16 @@ module tt_um_betz_morse_keyer(
   wire dit_pulse;
   wire stb, code_dit, code_dah;
   
-  debounce db0(clk, rstn_i, dit_i, dit_r); // Dit paddle debounce
-  debounce db1(clk, rstn_i, dah_i, dah_r); // Dah paddle debounce
+  debounce db0(clk_i, rstn_i, dit_i, dit_r); // Dit paddle debounce
+  debounce db1(clk_i, rstn_i, dah_i, dah_r); // Dah paddle debounce
   
   assign morse_int = paddle_sel_i ? iambic_morse : dit_r; // Select between straight-key morse and keyer output
-  iambic_keyer keyer(clk, rstn_i, iambic_AB_i, dit_r, dah_r, dit_pulse, iambic_morse);
-  morse_decode_sr display(clk, rstn_i, stb, code_dit, code_dah, seven_segment);
-  dit_pulse_buzzer_oscillator timer(clk, rstn_i, morse_int, wpm_sel_i, dit_pulse, buzzer_o);
-  morse_encoder encoder(clk, rstn_i, morse_int, dit_pulse, stb, code_dit, code_dah);
+  iambic_keyer keyer(clk_i, rstn_i, iambic_AB_i, dit_r, dah_r, dit_pulse, iambic_morse);
+  morse_decode_sr display(clk_i, rstn_i, stb, code_dit, code_dah, seven_segment);
+  dit_pulse_buzzer_oscillator timer(clk_i, rstn_i, morse_int, wpm_sel_i, dit_pulse, buzzer_o);
+  morse_encoder encoder(clk_i, rstn_i, morse_int, dit_pulse, stb, code_dit, code_dah);
   
-  always @(posedge clk) begin
+  always @(posedge clk_i) begin
     aux_dit_o   <= dit_r;
     aux_dah_o   <= dah_r;
     aux_morse_o <= morse_int;
