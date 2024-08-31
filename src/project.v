@@ -22,7 +22,7 @@ module tt_um_betz_morse_keyer (
   assign uio_oe  = 8'b00111100;
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, 1'b0};
+	wire _unused = &{ui_in[3:2], uio_in[7:2], ena, 1'b0};
   
   tt08_morse_keyer main(
     .clk_i(clk), .rstn_i(rst_n),
