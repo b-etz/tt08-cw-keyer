@@ -740,7 +740,7 @@ module dit_pulse_buzzer_oscillator(
   
   // Timer prescaler pulse, divide by 512
   // Note, the first prescaler pulse is early. The minimum timer count is 255, so this is tolerable.
-  wire clk1, clk2, clk4, clk8, clk16, clk32, clk64, clk128, clk256, clk512;
+  wire clk2, clk4, clk8, clk16, clk32, clk64, clk128, clk256, clk512;
   clkdiv_by_2  div0(clk_i, rstn_i, clk2);
   ripple_stage div1(clk_i, rstn_i, clk2, clk4);
   ripple_stage div2(clk_i, rstn_i, clk4, clk8);
@@ -839,6 +839,7 @@ module tt08_morse_keyer(
   output wire buzzer_o,
   output wire [7:0] seven_segment
 );
+  wire dit_r, dah_r;
   wire iambic_morse, morse_int;
   wire dit_pulse;
   wire stb, code_dit, code_dah;
@@ -849,7 +850,7 @@ module tt08_morse_keyer(
   assign morse_int = paddle_sel_i ? iambic_morse : dit_r; // Select between straight-key morse and keyer output
   iambic_keyer keyer(clk_i, rstn_i, iambic_AB_i, dit_r, dah_r, dit_pulse, iambic_morse);
   morse_decode_sr display(clk_i, rstn_i, stb, code_dit, code_dah, seven_segment);
-  dit_pulse_buzzer_oscillator timer(clk_i, rstn_i, morse_int, wpm_sel_i, dit_pulse, buzzer_o);
+  dit_pulse_buzzer_oscillator dit_timer(clk_i, rstn_i, morse_int, wpm_sel_i, dit_pulse, buzzer_o);
   morse_encoder encoder(clk_i, rstn_i, morse_int, dit_pulse, stb, code_dit, code_dah);
   
   always @(posedge clk_i) begin
