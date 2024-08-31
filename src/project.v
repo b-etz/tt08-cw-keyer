@@ -24,7 +24,7 @@ module tt_um_example (
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, 1'b0};
   
-  tt08_morse_keyer tt_um_betz_morse_keyer(
+  tt_um_betz_morse_keyer main(
     .clk_i(clk), .rstn_i(rst_n),
     .wpm_sel_i(ui_in[7:4]),                           // MSB = input[7], LSB = input[4]
     .paddle_sel_i(ui_in[0]),  .iambic_AB_i(ui_in[1]), // Straight key / paddle selection = input[0],  Iambic-A/B selection = input[1]
