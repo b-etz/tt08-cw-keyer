@@ -759,7 +759,9 @@ module dit_pulse_buzzer_oscillator(
   reg timer_dn, timer_en;
   // Timer update
   always @(posedge clk_i or negedge rstn_i) begin
-    if (~rstn_i | retime) begin
+    if (!rstn_i) begin
+      timer <= 12'b0; pause_count <= 6'b0; timer_dn <= 1'b0; timer_en <= 1'b0;
+    end else if (retime) begin
       timer <= 12'b0; pause_count <= 6'b0; timer_dn <= 1'b0; timer_en <= 1'b0;
     end else begin
       if (morse_i) timer_en <= 1'b1;
