@@ -118,7 +118,7 @@ module morse_decode_sm(
         if (dit_i) next_state = st_E;
         if (dah_i) next_state = st_T;
       end
-      st_ERR: if (dit_i || dah_i) next_state = st_ERR;
+      st_ERR: if (dit_i | dah_i) next_state = st_ERR;
       st_E: begin //.
         if (dit_i) next_state = st_I;
         if (dah_i) next_state = st_A;
@@ -184,7 +184,7 @@ module morse_decode_sm(
         if (dah_i) next_state = st_3;
       end
       st_F: begin //..-.
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_INT1: begin //..--
         if (dit_i) next_state = st_INT5;
@@ -227,7 +227,7 @@ module morse_decode_sm(
         if (dah_i) next_state = st_INT9;
       end
       st_Q: begin //--.-
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_INT3: begin //---.
         if (dit_i) next_state = st_8;
@@ -238,23 +238,23 @@ module morse_decode_sm(
         if (dah_i) next_state = st_0;
       end
       st_5: begin //.....
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_4: begin //....-
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_3: begin //...--
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_INT5: begin //..--.
         if (dit_i) next_state = st_qstn;
         if (dah_i) next_state = st_udrs;
       end
       st_2: begin //..---
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_ampn: begin //.-... -> &
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_INT6: begin //.-..-
         if (dit_i) next_state = st_qote;
@@ -277,10 +277,10 @@ module morse_decode_sm(
         if (dah_i) next_state = st_dash;
       end
       st_eqls: begin //-...- -> =
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_slsh: begin //-..-. -> /
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_INT8: begin //-.-.-
         if (dit_i) next_state = st_semc;
@@ -291,7 +291,7 @@ module morse_decode_sm(
         if (dah_i) next_state = st_prnc;
       end
       st_7: begin //--...
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_INT9: begin //--..-
         if (dit_i) next_state = st_ERR;
@@ -302,46 +302,46 @@ module morse_decode_sm(
         if (dah_i) next_state = st_ERR;
       end
       st_9: begin //----.
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_0: begin //-----
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_qstn: begin //..--.. -> ?
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_udrs: begin //..--.- -> _
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_qote: begin //.-..-. -> "
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_fstp: begin //.-.-.- -> .
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_atsn: begin //.--.-. -> @
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_apst: begin //.----. -> '
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_dash: begin //-....- -> -
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_semc: begin //-.-.-. -> ;
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_excm: begin //-.-.-- -> !
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_prnc: begin //-.--.- -> )
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_cmma: begin //--..-- -> ,
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       st_coln: begin //---... -> :
-        if (dit_i || dah_i) next_state = st_ERR;
+        if (dit_i | dah_i) next_state = st_ERR;
       end
       default: next_state = st_ERR;
     endcase
@@ -350,7 +350,7 @@ module morse_decode_sm(
   // Output transition block
   always @(posedge clk_i or negedge rstn_i) begin
     if (!rstn_i) seven_seg_o <= 8'b0;
-    else if (strobe_i && !dit_i && !dah_i) begin
+    else if (strobe_i & ~(dit_i | dah_i)) begin
       case(current_state)
         st_A: seven_seg_o <= 8'b01110111;
         st_B: seven_seg_o <= 8'b01111100;
