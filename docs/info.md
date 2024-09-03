@@ -11,6 +11,8 @@ You can also include images in this folder and reference them in the markdown. E
 
 Morse Keyer takes a paddle-type dit/dah signal (io[0:1]) and converts it to an auxilliary Morse code output (io[4]) and a buzzer tone (io[5]).
 The design outputs auxilliary dit/dah signals (io[2:3]) to send to other gear, like a radio.
+Additionally, it outputs to the demonstration board's seven-segment display (out[7:0]) to reveal the character you just completed as you key.
+
 To use a straight-key input (or press a single button to key Morse code) set in[0] HIGH. For Iambic paddles, set in[0] LOW.
 To use Iambic keying type A, set in[1] LOW. For Iambic-B, set in[1] HIGH. (https://ag6qr.net/index.php/2017/01/06/iambic-a-or-b-or-does-it-matter/)
 WPM control is set between 7 WPM and ~100 WPM with in[7:4] via the demo board dip switches.
@@ -51,6 +53,10 @@ Attach hardware like that shown in the External Hardware section to use.
 
 ## External hardware
 
-Please see the schematic below for the recommended application circuit:
+For the best experience, and to use custom radio hardware and paddles, I recommend assembling a companion PCB affixed the bidirectional PMOD.
 
-TODO_INSERT_CIRCUIT_SCHEMATIC
+A /pcb/ directory accompanies the standard Tiny Tapeout directories with the KiCad files.
+
+Please see the schematic below for a screenshot of the recommended application schematic:
+
+![KiCad Application Schematic - 2024 Sep 02](https://github.com/b-etz/tt08-morse-keyer/blob/main/docs/application_schematic.jpg?raw=true)
