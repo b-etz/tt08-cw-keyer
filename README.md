@@ -1,6 +1,6 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
+# Morse Keyer - A lightweight hardware (Verilog) keyer for CW training
 
 - [Read the documentation for project](docs/info.md)
 
@@ -10,32 +10,16 @@ Tiny Tapeout is an educational project that aims to make it easier and cheaper t
 
 To learn more and get started, visit https://tinytapeout.com.
 
-## Set up your Verilog project
+## About this Verilog Project
 
-1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
-3. Edit [docs/info.md](docs/info.md) and add a description of your project.
-4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
+Please see [docs/info.md](docs/info.md) for a description of this project. An application schematic is shown below.
 
-The GitHub action will automatically build the ASIC files using [OpenLane](https://www.zerotoasiccourse.com/terminology/openlane/).
+This design is a CW keyer taking paddle (Iambic) inputs and outputting dits and dahs to a radio/LED/buzzer for training and play. WPM control and Iambic/Straight key selection are done with inputs 7:4 and 0:1, respectively. It also outputs active-high LED controls for a 7-segment display on the board. This design takes advantage of input dip switches and an output seven-segment display present on the demo PCB kit provided with most Tiny Tapeout orders. For more, see: [https://www.tinytapeout.com/specs/pcb/](https://www.tinytapeout.com/specs/pcb/)
 
-## Enable GitHub actions to build the results page
+If you'd like to use this HDL in your own system, be sure to check the I/O mappings shown in [src/project.v](src/project.v) and adjust accordingly.
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+The [cocotb](https://docs.cocotb.org/en/stable/index.html) testbench is admittedly sparse. More rigorous testing has been performed with a Spartan 7 FPGA with no noticeable issues.
 
-## Resources
+## Application Schematic for UIO PMOD Port
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://www.tinytapeout.com/guides/local-hardening/)
-
-## What next?
-
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
+![KiCad Application Schematic - 2024 Sep 02](https://github.com/b-etz/tt08-morse-keyer/blob/main/docs/application_schematic.jpg?raw=true)
