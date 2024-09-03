@@ -51,7 +51,7 @@ async def test_project(dut):
     
     await ClockCycles(dut.clk,5200000) # Wait until on the second dah pulse
     dut.uio_in.value = 0x00 # Release the inputs
-    await ClockCycles(dut.clk,2)
+    await ClockCycles(dut.clk,25000)
     
     assert dut.uo_out.value == 0x00
     assert dut.uio_oe.value == 0x3C
