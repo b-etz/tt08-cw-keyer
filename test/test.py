@@ -41,15 +41,15 @@ async def test_project(dut):
     # Keep testing the module by changing the input values, waiting for
     # one or more clock cycles, and asserting the expected output values.
     dut.uio_in.value = 0x02 # Send a dah first
-    await ClockCycles(dut.clk,10000)
+    await ClockCycles(dut.clk,25000)
     dut.uio_in.value = 0x03 # Press the dit too (start iambic behavior)
-    await ClockCycles(dut.clk,10000)
+    await ClockCycles(dut.clk,25000)
     
     assert dut.uo_out.value == 0x00
     assert dut.uio_oe.value == 0x3C
     assert dut.uio_out.value == 0x1C or dut.uio_out.value == 0x3C # Aux outputs should be going now
     
-    await ClockCycles(dut.clk,5250000) # Wait until on the second dah pulse
+    await ClockCycles(dut.clk,5200000) # Wait until on the second dah pulse
     dut.uio_in.value = 0x00 # Release the inputs
     await ClockCycles(dut.clk,2)
     
